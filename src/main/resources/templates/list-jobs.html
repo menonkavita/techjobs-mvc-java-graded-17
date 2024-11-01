@@ -18,43 +18,45 @@
   </div>
 
   <!-- adding table to display "ALL Jobs" records using fragment-->
+  <!--  comment below table if using fragment-->
   <div th:replace="~{fragments :: table-jobs}"></div>
 
 
-  <!--  adding table to display "ALL Jobs" records -->
-    <th:block th:each = "aJob : ${jobs}">
-      <table class="job-listing">
-      <tr>
-        <td th:text="ID"></td>
-        <td th:text="${aJob.id}"> </td>
-      </tr>
 
-      <tr>
-        <td th:text="Name"></td>
-        <td th:text="${aJob.name}"> </td>
-      </tr>
+    <!--  adding table to display "ALL Jobs" records -->
+  <!--    <th:block th:each = "aJob : ${jobs}">-->
+  <!--      <table class="job-listing">-->
+  <!--      <tr>-->
+  <!--        <td th:text="ID"></td>-->
+  <!--        <td th:text="${aJob.id}"> </td>-->
+  <!--      </tr>-->
 
-      <tr>
-        <td th:text="Employer"></td>
-        <td th:text="${aJob.employer}"> </td>
-      </tr>
+  <!--      <tr>-->
+  <!--        <td th:text="Name"></td>-->
+  <!--        <td th:text="${aJob.name}"> </td>-->
+  <!--      </tr>-->
 
-      <tr>
-        <td th:text="Location"></td>
-        <td th:text="${aJob.location}"> </td>
-      </tr>
+  <!--      <tr>-->
+  <!--        <td th:text="Employer"></td>-->
+  <!--        <td th:text="${aJob.employer}"> </td>-->
+  <!--      </tr>-->
 
-      <tr>
-        <td th:text="'Position ' + 'Type'"></td>
-        <td th:text="${aJob.positionType}"> </td>
-      </tr>
+  <!--      <tr>-->
+  <!--        <td th:text="Location"></td>-->
+  <!--        <td th:text="${aJob.location}"> </td>-->
+  <!--      </tr>-->
 
-      <tr>
-        <td th:text="Skill"></td>
-        <td th:text="${aJob.coreCompetency}"> </td>
-      </tr>
-      </table>
-    </th:block>
+  <!--      <tr>-->
+  <!--        <td th:text="'Position ' + 'Type'"></td>-->
+  <!--        <td th:text="${aJob.positionType}"> </td>-->
+  <!--      </tr>-->
+
+  <!--      <tr>-->
+  <!--        <td th:text="Skill"></td>-->
+  <!--        <td th:text="${aJob.coreCompetency}"> </td>-->
+  <!--      </tr>-->
+  <!--      </table>-->
+  <!--    </th:block>-->
 
 </body>
 </html>

@@ -21,14 +21,16 @@ public class ListController {
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
 
-    public ListController () {
+    public ListController () {          // Constructor
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
         columnChoices.put("location", "Location");
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
-        tableChoices.put("employer", JobData.getAllEmployers());
+        //tableChoices.put("all", JobData.findAll());                     // Task 2: ToDo #2 - Adding "All" to the 'View Jobs By Category' table
+        tableChoices.put("all", "View All");
+        tableChoices.put("employer", JobData.getAllEmployers());        // Getting data from .csv file
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
@@ -37,7 +39,7 @@ public class ListController {
     @GetMapping(value = "")
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("tableChoices", tableChoices);
+        model.addAttribute("tableChoices", tableChoices);               // tableChoices
         model.addAttribute("employers", JobData.getAllEmployers());
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
@@ -46,9 +48,13 @@ public class ListController {
         return "list";
     }
 
+    // https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
+    // takes to jobs page & lists either all jobs or column's selection choice
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
-        ArrayList<Job> jobs;
+        ArrayList<Job> jobs;            // returns an ArrayList of type Job
+
+        // adds title to the /jobs page based on selection
         if (column.equals("all")){
             jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
@@ -56,9 +62,11 @@ public class ListController {
             jobs = JobData.findByColumnAndValue(column, value);
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
+
+        // adds jobs
         model.addAttribute("jobs", jobs);
 
-        return "list-jobs";
+        return "list-jobs";  // list-jobs.html
     }
 }
 

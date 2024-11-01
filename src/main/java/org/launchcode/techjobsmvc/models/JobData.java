@@ -32,7 +32,7 @@ public class JobData {
      * Fetch list of all job objects from loaded data,
      * without duplicates, then return a copy.
      */
-
+    // calls loadData() & returns all records from .csv file
     public static ArrayList<Job> findAll() {
 
         // load data, if not already loaded
@@ -101,6 +101,7 @@ public class JobData {
      * @param value The search term to look for.
      * @return      List of all jobs with at least one field containing the value.
      */
+    // searches by keyword entered in search box
     public static ArrayList<Job> findByValue(String value) {
 
         // load data, if not already loaded
@@ -127,6 +128,7 @@ public class JobData {
         return jobs;
     }
 
+    // find & return by object type i.e. employer/ position type/ location / core competency
     private static Object findExistingObject(ArrayList list, String value){
         for (Object item : list){
             if (item.toString().toLowerCase().equals(value.toLowerCase())){
@@ -139,7 +141,7 @@ public class JobData {
     /**
      * Read in data from a CSV file and store it in an ArrayList of Job objects.
      */
-    private static void loadData() {
+    private static void loadData() {    // loads data from .csv file if not already loaded
 
         // Only load data once
         if (isDataLoaded) {
@@ -153,7 +155,7 @@ public class JobData {
             InputStream is = resource.getInputStream();
             Reader reader = new InputStreamReader(is);
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
-            List<CSVRecord> records = parser.getRecords();
+            List<CSVRecord> records = parser.getRecords();                                      // data from file .csv stored in 'records' list variable
             Integer numberOfColumns = records.get(0).size();
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
@@ -195,7 +197,7 @@ public class JobData {
 
                 Job newJob = new Job(aName, newEmployer, newLocation, newPosition, newSkill);
 
-                allJobs.add(newJob);
+                allJobs.add(newJob);                        // adding one job record into ArrayList 'allJobs'
             }
             // flag the data as loaded, so we don't do it twice
             isDataLoaded = true;
@@ -206,25 +208,25 @@ public class JobData {
         }
     }
 
-    public static ArrayList<Employer> getAllEmployers() {
+    public static ArrayList<Employer> getAllEmployers() { // returns all employers from loadData() response
         loadData();
         allEmployers.sort(new NameSorter());
         return allEmployers;
     }
 
-    public static ArrayList<Location> getAllLocations() {
+    public static ArrayList<Location> getAllLocations() {   // returns all locations from loadData() response
         loadData();
         allLocations.sort(new NameSorter());
         return allLocations;
     }
 
-    public static ArrayList<PositionType> getAllPositionTypes() {
+    public static ArrayList<PositionType> getAllPositionTypes() {   // returns all position types from loadData() response
         loadData();
         allPositionTypes.sort(new NameSorter());
         return allPositionTypes;
     }
 
-    public static ArrayList<CoreCompetency> getAllCoreCompetency() {
+    public static ArrayList<CoreCompetency> getAllCoreCompetency() {    // returns all core competencies from loadData() response
         loadData();
         allCoreCompetency.sort(new NameSorter());
         return allCoreCompetency;

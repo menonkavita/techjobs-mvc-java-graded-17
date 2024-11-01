@@ -35,7 +35,8 @@ public class SearchController {
 
         if(searchType.equals("all") || searchType.equals(""))
         {
-            jobs= JobData.findAll();
+            // jobs= JobData.findAll();
+            jobs= JobData.findByValue(searchTerm);
             m.addAttribute("title", "Jobs With All: ");
         }
         else{

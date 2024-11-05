@@ -7,7 +7,11 @@
 <div th:replace="~{fragments :: page-header}"></div>
 
 <div class="container body-content">
+
+  <!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. -->
+  <!--  to further distinguish the labels from the data -->
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
   <h2 class = "centered">View Jobs By Category</h2>
 </div>
 

@@ -50,6 +50,8 @@ public class ListController {
 
     // https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
     // takes to jobs page & lists either all jobs or column's selection choice
+    // /list/jobs{column=[coreCompetency], value=[Ruby]}
+
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;            // returns an ArrayList of type Job
@@ -68,5 +70,22 @@ public class ListController {
 
         return "list-jobs";  // list-jobs.html
     }
+
+    // adds title to the list/results page based on selection
+    // eg. http://localhost:8080/list/results?column=location&value=Kansas%20City
+    @GetMapping(value = "results")
+    public String listLinkedResultsByColumnAndValue(Model m, @RequestParam String column, @RequestParam(required = false) String value){
+        ArrayList<Job> jobs;
+
+
+        m.addAttribute("title", "All Jobs");
+        m.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
+
+        jobs = JobData.findByColumnAndValue(column, value);
+        m.addAttribute("jobs", jobs);
+
+        return "linked-results";
+    }
+
 }
 

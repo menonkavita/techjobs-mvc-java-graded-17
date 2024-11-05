@@ -1,5 +1,6 @@
 package org.launchcode.techjobsmvc.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.launchcode.techjobsmvc.models.Job;
 import org.launchcode.techjobsmvc.models.JobData;
 import org.springframework.stereotype.Controller;
@@ -54,6 +55,30 @@ public class SearchController {
 
         m.addAttribute("columns", columnChoices);   // to display radio buttons for searchType
         m.addAttribute("jobs", jobs);
+
+
+//      BONUS MISSION #1: Focus on search radio button
+//      Solution: HTTPS session passed as parameter to the function - fails many tests; not going to implement it
+//
+//        String searchFocus = "";
+//        if (session.toString().equals("") || session.toString().equals("all")){
+//            searchFocus= "all";       // B.M #1:
+//        }
+//        else if(session.toString().equals("positionType")){
+//            searchFocus= "positionType";       // B.M #1:
+//        }
+//        else if(session.toString().equals("employer")){
+//            searchFocus= "employer";       // B.M #1:
+//        }
+//        else if(session.toString().equals("coreCompetency")){
+//            searchFocus= "coreCompetency";       // B.M #1:
+//        }
+//        else if(session.toString().equals("location")){
+//            searchFocus= "location";       // B.M #1:
+//        }
+//
+//        session.setAttribute("searchType", searchFocus);       // B.M #1:
+
         return "search";
     }
 

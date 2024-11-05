@@ -22,6 +22,13 @@
                         th:id="${column.key}"
                         th:value="${column.key}"
                         th:checked="${column.key == 'all'}"/>
+
+
+<!--                BONUS MISSION #1: Failing about 8 tests - not going to implement it -->
+<!--                th:checked = "${column.key == session.searchType}"/>  -->
+<!--                th:checked = "${session.searchType ? session.searchType == column.key : column.key == 'all'}"/> -->
+
+
                 <label th:for="${column.key}" th:text="${column.value}"></label>  <!--displays {column.value} eg. Position Type, Skill instead of coreCompetency  -->
             </span>
 

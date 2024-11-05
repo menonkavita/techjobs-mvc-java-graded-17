@@ -29,37 +29,64 @@
 
 
 <!--fragment to display jobs in search.html & list-jobs.html-->
+<!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. -->
+<!--  to further distinguish the labels from the data -->
+<!-- Customization(style:color change) added to all keys(labels) -->
+
+<!-- BONUS MISSION #3: In the tables of the job results, make each value (except name) hyperlinked -->
+<!-- to a new listing of all jobs with that same value -->
+<!-- link to go to: http://localhost:8080/list/jobs?column=positionType&value=Other -->
+<!-- <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td> -->
+
+
+<!-- BONUS MISSION #3: In the tables of the job results, make each value (except name) hyperlinked -->
+<!-- to a new listing of all jobs with that same value -->
+<!-- link to go to: http://localhost:8080/list/jobs?column=positionType&value=Other -->
+<!-- <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td> -->
+<!-- th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"-->
+
+
+<!--fragment to display jobs in search.html & list-jobs.html-->
 <div th:fragment="table-jobs">
     <th:block th:each = "aJob : ${jobs}">
         <table class="job-listing">
             <tr>
-                <td th:text="ID"></td>
+                <td th:text="ID" th:style="${'color:darkblue'}"></td>
                 <td th:text="${aJob.id}"> </td>
             </tr>
 
             <tr>
-                <td th:text="Name"></td>
+                <td th:text="Name" th:style="${'color:darkblue'}"></td>
                 <td th:text="${aJob.name}"> </td>
             </tr>
 
             <tr>
-                <td th:text="Employer"></td>
-                <td th:text="${aJob.employer}"> </td>
+                <!-- B.M #2: color styling applied to labels; tests not affected - passing 17/17 tests -->
+                <td th:text="Employer" th:style="${'color:darkblue'}"></td>
+                <td th:text="${aJob.employer}" >
+
+                    <!-- B.M #3: Fails one test - passing 16 of 17 tests; not going to implement -->
+<!--                <a> & editing <td> makes it to work but fails tests -->
+                    <!-- Any additions to <td> will cause tests to fail -->
+<!--                <td>-->
+<!--                    <a th:text="${aJob.employer}" th:href="@{/list/results(column=employer,value=${aJob.employer})}"> </a>-->
+
+                </td>
             </tr>
 
             <tr>
-                <td th:text="Location"></td>
-                <td th:text="${aJob.location}"> </td>
+                <td th:text="Location" th:style="${'color:darkblue'}"></td>
+                <td th:text="${aJob.location}" th:href="@{/list/results(column=location,value=${aJob.location})}"> </td>
             </tr>
 
             <tr>
-                <td th:text="'Position ' + 'Type'"></td>
-                <td th:text="${aJob.positionType}"> </td>
+                <td th:text="'Position ' + 'Type'" th:style="${'color:darkblue'}"></td>
+                <td th:text="${aJob.positionType}" th:href="@{/list/results(column=positionType,value=${aJob.positionType})}"> </td>
             </tr>
 
             <tr>
-                <td th:text="Skill"></td>
-                <td th:text="${aJob.coreCompetency}"> </td>
+                <td th:text="Skill" th:style="${'color:darkblue'}"></td>
+                <td th:text="${aJob.coreCompetency}" th:href="@{/list/results(column=coreCompetency,value=${aJob.coreCompetency})}"> </td>
             </tr>
         </table>
     </th:block>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+<body>
+
+<div th:replace="~{fragments :: page-header}"></div>
+
+<div class="container body-content">
+
+    <!--  h1 of the page -->
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+
+</div>
+
+<!-- BONUS MISSION #3: In the tables of the job results, make each value (except name) hyperlinked -->
+<!-- to a new listing of all jobs with that same value -->
+
+<!-- link to go to: http://localhost:8080/list/jobs?column=positionType&value=Other -->
+<!-- <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td> -->
+
+<!-- Created linked-results.html to display the BONUS MISSION #3 -->
+
+<!--  adding table to display "ALL Jobs" records -->
+
+    <th:block th:each = "aJob : ${jobs}">
+      <table class="job-listing">
+          <tr>
+              <td th:text="ID" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.id}"> </td>
+          </tr>
+
+          <tr>
+              <td th:text="Name" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.name}"> </td>
+          </tr>
+
+          <tr>
+              <td th:text="Employer" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.employer}"></td>
+          </tr>
+
+          <tr>
+              <td th:text="Location" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.location}"></td>
+          </tr>
+
+          <tr>
+              <td th:text="'Position ' + 'Type'" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.positionType}"> </td>
+          </tr>
+
+          <tr>
+              <td th:text="Skill" th:style="${'color:darkblue'}"></td>
+              <td th:text="${aJob.coreCompetency}"> </td>
+          </tr>
+      </table>
+    </th:block>
+
+</body>
+</html>

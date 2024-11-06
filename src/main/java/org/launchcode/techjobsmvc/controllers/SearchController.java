@@ -81,6 +81,7 @@ public class SearchController {
 //
 //        session.setAttribute("searchType", searchFocus);       // B.M #1:
 
+
         return "search";
     }
 

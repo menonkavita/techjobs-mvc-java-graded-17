@@ -4,89 +4,89 @@
 </head>
 <body>
 
-<div th:replace="~{fragments :: page-header}"></div>
+    <div th:replace="~{fragments :: page-header}"></div>
 
-<div class="container body-content">
+    <div class="container body-content">
 
-  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+      <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-  <form th:action="@{/search/results}" method = "post">
-    <h2>Search by:</h2>
+      <form th:action="@{/search/results}" method = "post">
+        <h2>Search by:</h2>
 
-    <!-- name of the radio button - 'searchType' -->
-    <p>
-        <span th:each="column : ${columns}">
-            <input
-                    type="radio"
-                    name="searchType"
-                    th:id="${column.key}"
-                    th:value="${column.key}"
-                    th:checked="${column.key == 'all'}"/>
-
-
-    <!--                BONUS MISSION #1: Failing about 8 tests - not going to implement it -->
-    <!--                th:checked = "${column.key == session.searchType}"/>  -->
-    <!--                th:checked = "${session.searchType ? session.searchType == column.key : column.key == 'all'}"/> -->
-    <!--                <input type="hidden" name="radioState" th:value="*{searchType}"> -->
+        <!-- name of the radio button - 'searchType' -->
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
 
 
-            <label th:for="${column.key}" th:text="${column.value}"></label>  <!--displays {column.value} eg. Position Type, Skill instead of coreCompetency  -->
-        </span>
-    </p>
+        <!--                BONUS MISSION #1: Failing about 8 tests - not going to implement it -->
+        <!--                th:checked = "${column.key == session.searchType}"/>  -->
+        <!--                th:checked = "${session.searchType ? session.searchType == column.key : column.key == 'all'}"/> -->
+        <!--                <input type="hidden" name="radioState" th:value="*{searchType}"> -->
 
-    <p>
-      <label for="searchTerm">Keyword:</label>
-      <input type="text" name="searchTerm" id="searchTerm" />
-    </p>
 
-    <input type="submit" value="Search" />
-  </form>
+                <label th:for="${column.key}" th:text="${column.value}"></label>  <!--displays {column.value} eg. Position Type, Skill instead of coreCompetency  -->
+            </span>
+        </p>
 
-  <hr />
+        <p>
+          <label for="searchTerm">Keyword:</label>
+          <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
 
-  <!-- TODO #4 - Loop over the search results to display all job fields. -->
+        <input type="submit" value="Search" />
+      </form>
+
+      <hr />
+
+      <!-- TODO #4 - Loop over the search results to display all job fields. -->
 
         <!-- adding table to display "ALL Jobs" records using fragment-->
         <!--  comment below table if using fragment-->
-        <div th:replace="~{fragments :: table-jobs}"></div>
+      <div th:replace="~{fragments :: table-jobs}"></div>
 
 
-        <!--  adding table to display "ALL Jobs" records -->
-    <!--    <th:block th:each = "aJob : ${jobs}">-->
-    <!--        <table class="job-listing">-->
-    <!--            <tr>-->
-    <!--                <td th:text="ID"></td>-->
-    <!--                <td th:text="${aJob.id}"> </td>-->
-    <!--            </tr>-->
+            <!--  adding table to display "ALL Jobs" records -->
+        <!--    <th:block th:each = "aJob : ${jobs}">-->
+        <!--        <table class="job-listing">-->
+        <!--            <tr>-->
+        <!--                <td th:text="ID"></td>-->
+        <!--                <td th:text="${aJob.id}"> </td>-->
+        <!--            </tr>-->
 
-    <!--            <tr>-->
-    <!--                <td th:text="Name"></td>-->
-    <!--                <td th:text="${aJob.name}"> </td>-->
-    <!--            </tr>-->
+        <!--            <tr>-->
+        <!--                <td th:text="Name"></td>-->
+        <!--                <td th:text="${aJob.name}"> </td>-->
+        <!--            </tr>-->
 
-    <!--            <tr>-->
-    <!--                <td th:text="Employer"></td>-->
-    <!--                <td th:text="${aJob.employer}"> </td>-->
-    <!--            </tr>-->
+        <!--            <tr>-->
+        <!--                <td th:text="Employer"></td>-->
+        <!--                <td th:text="${aJob.employer}"> </td>-->
+        <!--            </tr>-->
 
-    <!--            <tr>-->
-    <!--                <td th:text="Location"></td>-->
-    <!--                <td th:text="${aJob.location}"> </td>-->
-    <!--            </tr>-->
+        <!--            <tr>-->
+        <!--                <td th:text="Location"></td>-->
+        <!--                <td th:text="${aJob.location}"> </td>-->
+        <!--            </tr>-->
 
-    <!--            <tr>-->
-    <!--                <td th:text="'Position ' + 'Type'"></td>-->
-    <!--                <td th:text="${aJob.positionType}"> </td>-->
-    <!--            </tr>-->
+        <!--            <tr>-->
+        <!--                <td th:text="'Position ' + 'Type'"></td>-->
+        <!--                <td th:text="${aJob.positionType}"> </td>-->
+        <!--            </tr>-->
 
-    <!--            <tr>-->
-    <!--                <td th:text="Skill"></td>-->
-    <!--                <td th:text="${aJob.coreCompetency}"> </td>-->
-    <!--            </tr>-->
-    <!--        </table>-->
-    <!--    </th:block>-->
+        <!--            <tr>-->
+        <!--                <td th:text="Skill"></td>-->
+        <!--                <td th:text="${aJob.coreCompetency}"> </td>-->
+        <!--            </tr>-->
+        <!--        </table>-->
+        <!--    </th:block>-->
 
-</div>
+    </div>
 
 </body>
 </html>

@@ -21,6 +21,7 @@ public class ListController {
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
 
+
     public ListController () {          // Constructor
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");                 // titles of columns

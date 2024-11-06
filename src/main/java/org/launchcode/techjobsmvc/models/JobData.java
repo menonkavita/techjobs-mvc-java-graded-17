@@ -22,11 +22,11 @@ public class JobData {
     private static final String DATA_FILE = "job_data.csv";
     private static boolean isDataLoaded = false;
 
-    private static ArrayList<Job> allJobs;
-    private static ArrayList<Employer> allEmployers = new ArrayList<>();
-    private static ArrayList<Location> allLocations = new ArrayList<>();
-    private static ArrayList<PositionType> allPositionTypes = new ArrayList<>();
-    private static ArrayList<CoreCompetency> allCoreCompetency = new ArrayList<>();
+    private static ArrayList<Job> allJobs;                                           // returns ArrayList of Job objects
+    private static ArrayList<Employer> allEmployers = new ArrayList<>();             // For List view: returns ArrayList of Employer objects
+    private static ArrayList<Location> allLocations = new ArrayList<>();             // For List view: returns ArrayList of Location objects
+    private static ArrayList<PositionType> allPositionTypes = new ArrayList<>();     // For List view: returns ArrayList of PositionType objects
+    private static ArrayList<CoreCompetency> allCoreCompetency = new ArrayList<>();  // For List view: returns ArrayList of CoreCompetency objects
 
     /**
      * Fetch list of all job objects from loaded data,
@@ -39,9 +39,8 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
-        // creates a new ArrayList and initializes it with the elements of the collection allJobs
-        // basically returns a copy of allJobs
-        return new ArrayList<>(allJobs);
+                                                // creates a new ArrayList and initializes it with the elements of the collection allJobs
+        return new ArrayList<>(allJobs);        // basically returns a copy of allJobs
     }
 
     /**

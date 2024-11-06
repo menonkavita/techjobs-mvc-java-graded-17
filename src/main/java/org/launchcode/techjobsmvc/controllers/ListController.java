@@ -23,12 +23,12 @@ public class ListController {
 
     public ListController () {          // Constructor
         columnChoices.put("all", "All");
-        columnChoices.put("employer", "Employer");
+        columnChoices.put("employer", "Employer");                 // titles of columns
         columnChoices.put("location", "Location");
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
-        //tableChoices.put("all", JobData.findAll());                     // Task 2: ToDo #2 - Adding "All" to the 'View Jobs By Category' table
+        //tableChoices.put("all", JobData.findAll());                     // Task 2: Adding "All" to the 'View Jobs By Category' table
         tableChoices.put("all", "View All");
         tableChoices.put("employer", JobData.getAllEmployers());        // Getting data from .csv file
         tableChoices.put("location", JobData.getAllLocations());
@@ -43,7 +43,7 @@ public class ListController {
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("tableChoices", tableChoices);               // tableChoices
-        model.addAttribute("employers", JobData.getAllEmployers());
+        model.addAttribute("employers", JobData.getAllEmployers());     // Methods from JobData
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
         model.addAttribute("skills", JobData.getAllCoreCompetency());
@@ -52,10 +52,10 @@ public class ListController {
     }
 
 
-    // displays information for the jobs related to a selected category
-    // i.e. takes to jobs page & lists either all jobs or column's selection choice
-    // LC Demo link: https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
+    // displays information for the jobs related to a selected value & category
 
+    // i.e. takes to jobs page & lists either all jobs or column's selection choice based on user selection
+    // LC Demo link: https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
     // On localhost: /list/jobs{column=[coreCompetency], value=[Ruby]}
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
@@ -63,10 +63,10 @@ public class ListController {
 
         // adds title to the /jobs page based on selection
         if (column.equals("all")){
-            jobs = JobData.findAll();
+            jobs = JobData.findAll();                                          // returns all jobs
             model.addAttribute("title", "All Jobs");
         } else {
-            jobs = JobData.findByColumnAndValue(column, value);
+            jobs = JobData.findByColumnAndValue(column, value);                // returns a smaller set of jobs based on column & value
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
 

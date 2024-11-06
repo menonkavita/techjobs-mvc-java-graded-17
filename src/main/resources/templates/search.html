@@ -15,23 +15,23 @@
 
     <!-- name of the radio button - 'searchType' -->
     <p>
-            <span th:each="column : ${columns}">
-                <input
-                        type="radio"
-                        name="searchType"
-                        th:id="${column.key}"
-                        th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
+        <span th:each="column : ${columns}">
+            <input
+                    type="radio"
+                    name="searchType"
+                    th:id="${column.key}"
+                    th:value="${column.key}"
+                    th:checked="${column.key == 'all'}"/>
 
 
-<!--                BONUS MISSION #1: Failing about 8 tests - not going to implement it -->
-<!--                th:checked = "${column.key == session.searchType}"/>  -->
-<!--                th:checked = "${session.searchType ? session.searchType == column.key : column.key == 'all'}"/> -->
+    <!--                BONUS MISSION #1: Failing about 8 tests - not going to implement it -->
+    <!--                th:checked = "${column.key == session.searchType}"/>  -->
+    <!--                th:checked = "${session.searchType ? session.searchType == column.key : column.key == 'all'}"/> -->
+    <!--                <input type="hidden" name="radioState" th:value="*{searchType}"> -->
 
 
-                <label th:for="${column.key}" th:text="${column.value}"></label>  <!--displays {column.value} eg. Position Type, Skill instead of coreCompetency  -->
-            </span>
-
+            <label th:for="${column.key}" th:text="${column.value}"></label>  <!--displays {column.value} eg. Position Type, Skill instead of coreCompetency  -->
+        </span>
     </p>
 
     <p>
@@ -45,6 +45,7 @@
   <hr />
 
   <!-- TODO #4 - Loop over the search results to display all job fields. -->
+
         <!-- adding table to display "ALL Jobs" records using fragment-->
         <!--  comment below table if using fragment-->
         <div th:replace="~{fragments :: table-jobs}"></div>

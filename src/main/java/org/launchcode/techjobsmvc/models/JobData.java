@@ -39,6 +39,8 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
+        // creates a new ArrayList and initializes it with the elements of the collection allJobs
+        // basically returns a copy of allJobs
         return new ArrayList<>(allJobs);
     }
 

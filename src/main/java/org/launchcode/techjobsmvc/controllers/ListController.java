@@ -36,6 +36,9 @@ public class ListController {
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());
     }
 
+
+    // renders a view that displays a table of clickable links for the different job categories
+    // localhost:8080/list
     @GetMapping(value = "")
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
@@ -48,10 +51,12 @@ public class ListController {
         return "list";
     }
 
-    // https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
-    // takes to jobs page & lists either all jobs or column's selection choice
-    // /list/jobs{column=[coreCompetency], value=[Ruby]}
 
+    // displays information for the jobs related to a selected category
+    // i.e. takes to jobs page & lists either all jobs or column's selection choice
+    // LC Demo link: https://techjobs-mvc.launchcodelearning.org/list/jobs?column=all
+
+    // On localhost: /list/jobs{column=[coreCompetency], value=[Ruby]}
     @GetMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;            // returns an ArrayList of type Job
@@ -71,12 +76,17 @@ public class ListController {
         return "list-jobs";  // list-jobs.html
     }
 
+
+
+    // BONUS MISSION #3:    --- Works!! ---   But not implemented since it causes tests to fail
+    // Added new Controller Method below that displays results on linked-results.html page
+    // Also, created new linked-results.html page
+
     // adds title to the list/results page based on selection
     // eg. http://localhost:8080/list/results?column=location&value=Kansas%20City
     @GetMapping(value = "results")
     public String listLinkedResultsByColumnAndValue(Model m, @RequestParam String column, @RequestParam(required = false) String value){
         ArrayList<Job> jobs;
-
 
         m.addAttribute("title", "All Jobs");
         m.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);

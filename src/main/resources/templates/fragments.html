@@ -28,17 +28,20 @@
 </div>
 
 
-<!--fragment to display jobs in search.html & list-jobs.html-->
-<!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. -->
+
+<!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. --- WORKS!! --- -->
 <!--  to further distinguish the labels from the data -->
-<!-- Customization(style:color change) added to all keys(labels) -->
+<!--  Customization(style:color change) added to all keys(labels) -->
 
 
-<!-- BONUS MISSION #3: In the tables of the job results, make each value (except name) hyperlinked -->
+<!-- BONUS MISSION #3: In the tables of the job results, make each value (except name) hyperlinked  --- WORKS!! But not implemented --- -->
 <!-- to a new listing of all jobs with that same value -->
-<!-- link to go to: http://localhost:8080/list/jobs?column=positionType&value=Other -->
-<!-- <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td> -->
+<!--   --- WORKS!! But not implemented.  --- CAUSES tests to FAIL --- -->
+
+<!-- link: http://localhost:8080/list/jobs?column=positionType&value=Other -->
 <!-- th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"-->
+<!-- <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td> -->
+<!-- <a th:text="${aJob.employer}" th:href="@{/list/results(column=employer,value=${aJob.employer})}"> -->
 
 
 <!--fragment to display jobs in search.html & list-jobs.html-->

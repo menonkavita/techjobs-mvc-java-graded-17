@@ -3,42 +3,44 @@
 <head th:replace="~{fragments :: head}"></head>
 
 <body>
+  <div th:replace="~{fragments :: page-header}"></div>
 
-<div th:replace="~{fragments :: page-header}"></div>
+  <div class="container body-content">
+    <!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. -->
+    <!--  to further distinguish the labels from the data -->
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h2 class = "centered">View Jobs By Category</h2>
+  </div>
 
-<div class="container body-content">
+  <table class="centeredTable">
+    <tr>
+      <th:block th:each="column : ${columns}">     <!--    https://techjobs-mvc.launchcodelearning.org/list-->
+        <th th:text = "${column.value}"></th>   <!--    Table Header: column.value: All, Position Type, Employer, Skill, Location -->
+      </th:block>
+    </tr>
 
-  <!--  BONUS MISSION #2: manipulate the font, style, capitalization, etc. -->
-  <!--  to further distinguish the labels from the data -->
-  <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <tr>
+      <!-- TODO #2: Complete the View Jobs By Category Table. -->
 
-  <h2 class = "centered">View Jobs By Category</h2>
-</div>
+      <!--    create a link to page View All Jobs here -->
+      <!--    Tested out this option then decided to add into 'tableChoices' HashMap in ListController & chose below option -->
+      <!--    <td> -->
+      <!--      <a th:href="@{/list/jobs(column=all)}"> View All</a>-->
+      <!--    </td> -->
 
-<table class="centeredTable">
-  <tr>
-<th:block th:each="column : ${columns}">     <!--    https://techjobs-mvc.launchcodelearning.org/list-->
-      <th th:text = "${column.value}"></th>   <!--    Table Header: column.value: All, Position Type, Employer, Skill, Location -->
-    </th:block>
-  </tr>
-  <tr>
-    <!-- TODO #2: Complete the View Jobs By Category Table. -->
+      <!-- Feel free to remove or modify this element if necessary. -->
 
-<!--    create a link to page View All Jobs here -->
-<!--    <td>-->
-<!--      <a th:href="@{/list/jobs(column=all)}"> View All</a>-->
-<!--    </td> -->
-    <!-- Feel free to remove or modify this element if necessary. -->
 
-    <td th:each="category : ${tableChoices}">
-      <ul>
-        <li th:each="item : ${category.value}">
-          <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>
-        </li>
-      </ul>
-    </td>
-  </tr>
-</table>
+<!--  Decided to add 'View All' to ListController to be added directly to below table instead of putting it as a separate table row (above) -->
+      <td th:each="category : ${tableChoices}">
+        <ul>
+          <li th:each="item : ${category.value}">
+            <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
 
 </body>
 </html>

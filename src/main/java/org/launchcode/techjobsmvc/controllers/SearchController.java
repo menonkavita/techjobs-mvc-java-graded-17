@@ -57,8 +57,10 @@ public class SearchController {
         m.addAttribute("jobs", jobs);
 
 
-//      BONUS MISSION #1: Focus on search radio button
-//      Solution: HTTPS session passed as parameter to the function - fails many tests; not going to implement it
+
+//      BONUS MISSION #1: Focus on search radio button - FAILS MANY TESTS; so not going to implement it
+//      Solution1: HTTPS session passed as parameter to the function
+//      Solution2: Also tried hidden input type option, both solutions failing tests
 //
 //        String searchFocus = "";
 //        if (session.toString().equals("") || session.toString().equals("all")){

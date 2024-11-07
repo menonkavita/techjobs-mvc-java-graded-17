@@ -16,22 +16,22 @@ import java.util.HashMap;
  */
 @Controller
 @RequestMapping(value = "list")
-public class ListController {
+public class ListController extends TechJobsController{                     // #SUPER BONUS MISSION: extends TechJobsController
 
-    static HashMap<String, String> columnChoices = new HashMap<>();
+//    static HashMap<String, String> columnChoices = new HashMap<>();       // #SUPER BONUS MISSION
     static HashMap<String, Object> tableChoices = new HashMap<>();
 
 
     public ListController () {          // Constructor
-        columnChoices.put("all", "All");
-        columnChoices.put("employer", "Employer");                 // titles of columns
-        columnChoices.put("location", "Location");
-        columnChoices.put("positionType", "Position Type");
-        columnChoices.put("coreCompetency", "Skill");
+//        columnChoices.put("all", "All");
+//        columnChoices.put("employer", "Employer");                    // #SUPER BONUS MISSION - columnChoices gone to TechJobsController
+//        columnChoices.put("location", "Location");                    // titles of columns
+//        columnChoices.put("positionType", "Position Type");
+//        columnChoices.put("coreCompetency", "Skill");
 
         //tableChoices.put("all", JobData.findAll());                     // Task 2: Adding "All" to the 'View Jobs By Category' table
         tableChoices.put("all", "View All");
-        tableChoices.put("employer", JobData.getAllEmployers());        // Getting data from .csv file
+        tableChoices.put("employer", JobData.getAllEmployers());          // Getting data from .csv file
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
         tableChoices.put("coreCompetency", JobData.getAllCoreCompetency());

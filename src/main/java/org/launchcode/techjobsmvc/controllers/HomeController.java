@@ -10,16 +10,18 @@ import java.util.HashMap;
  * Created by LaunchCode
  */
 @Controller
-public class HomeController {
+public class HomeController extends TechJobsController{
 
     @GetMapping(value = "/")
-    public String index(Model model) {
+    public String index() {
 
-        HashMap<String, String> actionChoices = new HashMap<>();
-        actionChoices.put("search", "Search");
-        actionChoices.put("list", "List");
+        // #SUPER BONUS MISSION - below code gone to TechJobsController
+        // HashMap<String, String> actionChoices = new HashMap<>();
+        // actionChoices.put("search", "Search");
+        // actionChoices.put("list", "List");
 
-        model.addAttribute("actions", actionChoices);
+        // Model model not longer needed as parameters to current function
+        // model.addAttribute("actions", actionChoices);
 
         return "index";
     }

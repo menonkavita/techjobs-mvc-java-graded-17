@@ -20,7 +20,7 @@ import static org.launchcode.techjobsmvc.controllers.ListController.columnChoice
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController{               // #SUPER BONUS MISSION: extends TechJobsController
 
     String radioStatus = "";                            // BONUS MISSION 1: maintaining state of radio button based on user selection
 

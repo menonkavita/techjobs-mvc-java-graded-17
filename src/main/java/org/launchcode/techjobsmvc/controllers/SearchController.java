@@ -22,17 +22,26 @@ import static org.launchcode.techjobsmvc.controllers.ListController.columnChoice
 @RequestMapping("search")
 public class SearchController {
 
+    String radioStatus = "";                            // BONUS MISSION 1: maintaining state of radio button based on user selection
+
     @GetMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
+
+        radioStatus = "all";                           // B.M. 1: radio button state
+        model.addAttribute("radioStatus", radioStatus);
+
         return "search";
     }
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
     // path: /search/results
     @PostMapping("results")
-    public String displaySearchResults(Model m, @RequestParam String searchType, @RequestParam(required=false) String searchTerm){
+    public String displaySearchResults(Model m,
+                                       @RequestParam String searchType,
+                                       @RequestParam(required=false) String searchTerm){
         ArrayList<Job> jobs;
+        radioStatus= searchType;
 
         if(searchType.equals("all") || searchType.equals(""))
         {
@@ -53,34 +62,9 @@ public class SearchController {
             m.addAttribute("title", "Jobs with " + searchType + ": " + searchTerm);
         }
 
-        m.addAttribute("columns", columnChoices);   // to display radio buttons for searchType
+        m.addAttribute("columns", columnChoices);
         m.addAttribute("jobs", jobs);
-
-
-
-//      BONUS MISSION #1: Focus on search radio button - FAILS MANY TESTS; so not going to implement it
-//      Solution1: HTTPS session passed as parameter to the function
-//      Solution2: Also tried hidden input type option, both solutions failing tests
-//
-//        String searchFocus = "";
-//        if (session.toString().equals("") || session.toString().equals("all")){
-//            searchFocus= "all";       // B.M #1:
-//        }
-//        else if(session.toString().equals("positionType")){
-//            searchFocus= "positionType";       // B.M #1:
-//        }
-//        else if(session.toString().equals("employer")){
-//            searchFocus= "employer";       // B.M #1:
-//        }
-//        else if(session.toString().equals("coreCompetency")){
-//            searchFocus= "coreCompetency";       // B.M #1:
-//        }
-//        else if(session.toString().equals("location")){
-//            searchFocus= "location";       // B.M #1:
-//        }
-//
-//        session.setAttribute("searchType", searchFocus);       // B.M #1:
-
+        m.addAttribute("radioStatus", radioStatus);     // B.M. 1: To display radio buttons for searchType
 
         return "search";
     }
